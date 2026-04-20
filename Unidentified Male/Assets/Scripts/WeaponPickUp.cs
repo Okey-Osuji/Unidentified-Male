@@ -1,48 +1,80 @@
 using UnityEngine;
 
-public class WeaponPickUp : MonoBehaviour
+public class WeaponPickup : MonoBehaviour
 {
-    [Header("Weapon Pick Up Settings")]
-    public GameObject weaponPrefab; // The prefab of the weapon to be picked up
-    public string pickUpMessage = "Press E to pick up"; // Message to display when player is near
+    [Header("Weapon Data")]
+    public GameObject weaponPrefab;
+    private string actualWeaponName;
 
-    private bool isPlayerNearby = false; // Flag to check if player is nearby
-    private PlayerCombat playerCombat; // Reference to the player's combat script
+    private bool isPlayerInRange = false;
+    private GameObject playerObject;
 
-    // Method to etect when the player enters the trigger area
-    void OnTriggerEnter2D(Collider2D other)
+    void Start()
     {
+        if (weaponPrefab != null)
+        {
+            Weapon wScript = weaponPrefab.GetComponent<Weapon>();
+            if (wScript != null) actualWeaponName = wScript.weaponName;
+        }
+        else
+        {
+            actualWeaponName = "Unknown Weapon";
+        }
 
-        if (other.CompareTag("Player"))// Checks if the player has entered the trigger area
-        {
-            isPlayerNearby = true;// Set the flag to true
-            playerCombat = other.GetComponent<PlayerCombat>(); // Gets the player's combat script
-            Debug.Log(pickUpMessage + weaponPrefab.name); // Displays the pick up message
-        }
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
     }
- 
-    // Method to detect when the player exits the trigger area
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))// Checks if the player has exited the trigger area
-        {
-            isPlayerNearby = false;// Set the flag to false
-            
-        }
-    }
-    
-    // Update is called once per frame
+
     void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E)) // Checks if the player is nearby and presses the E key
+        // THE E KEY CHECK: This prevents automatic pickup of weapon
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            EquipWeapon(); // Calls the method to equip the weapon
+            // This weapon check will only work if the player has room in their inventory
+            if (playerObject.GetComponent<PlayerCombat>().unlockedWeapons.Count < 3)
+            {
+                PickUp(playerObject);
+            }
         }
     }
 
-    void EquipWeapon()
+    public void PickUp(GameObject player)
     {
-        playerCombat.SwapWeapon(weaponPrefab); // Calls the method to swap the player's weapon with the new one
-        Destroy(gameObject);// Destroys the weapon pick up object after equipping the weapon
+        PlayerCombat combat = player.GetComponent<PlayerCombat>();
+        if (combat != null)
+        {
+            // The weapon PREFAB is passed
+            bool success = combat.AddNewWeapon(weaponPrefab);
+
+            if (success)
+            {
+                Debug.Log("Successfully picked up " + actualWeaponName);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log("Inventory Full! You cannot pick up " + actualWeaponName);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // If the player is on the weapon, they CAN choose to pick up weapon or not
+            isPlayerInRange = true;
+            playerObject = other.gameObject;
+            Debug.Log($"Standing over {actualWeaponName}. Press E to pick up.");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        //Checks when the player leaves the range of any interactable media 
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInRange = false;
+            playerObject = null;
+        }
     }
 }

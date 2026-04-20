@@ -19,16 +19,29 @@ public class PlayerMovement : MonoBehaviour
     }
     
     void Update()
+{
+    if (keyboard == null) return;
+    
+    // Reads movement input
+    moveInput.x = (keyboard.dKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed ? 1 : 0);
+    moveInput.y = (keyboard.wKey.isPressed ? 1 : 0) - (keyboard.sKey.isPressed ? 1 : 0);
+    
+    isSprinting = keyboard.rightShiftKey.isPressed;
+
+    // Rotation Logic
+    // Only rotates if the player is actually pressing a movement key
+    if (moveInput != Vector2.zero)
     {
-        if (keyboard == null) return;// If no keyboard is detected, skip input processing
-        
-        // Read movement input
-        moveInput.x = (keyboard.dKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed ? 1 : 0);// Calculate horizontal movement input based on WASD keys
-        moveInput.y = (keyboard.wKey.isPressed ? 1 : 0) - (keyboard.sKey.isPressed ? 1 : 0);// Calculate movement input based on WASD keys
-        
-        // Read sprint input - this needs to be checked every frame
-        isSprinting = keyboard.rightShiftKey.isPressed;
+        // Calculates the angle (in radians) then convert to degrees
+        // Atan2 takes (y, x)
+        float targetAngle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
+
+        // Applies the rotation
+        // Since soldier is drawn facing UP, we subtract 90 degrees 
+        // to align Unity's "Right" (0°) with the player sprite's "Top".
+        transform.rotation = Quaternion.Euler(0, 0, targetAngle - 90f);
     }
+}
     
     void FixedUpdate()
     {
