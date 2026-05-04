@@ -30,7 +30,7 @@ public class PlayerCombat : MonoBehaviour
     [Header("AttackPoint Offsets")]
     public Vector2 unarmedOffset = new Vector2(0.5f, 2f);
     public Vector2 pistolOffset = new Vector2(0f, 5.9f); 
-    public Vector2 rifleOffset = new Vector2(7.2f, 5.2f);
+    public Vector2 rifleOffset = new Vector2(-2.8f, 7.9f);
     public Vector2 pipeOffset = new Vector2(0.5f, 2f);
     public Vector2 knifeOffset = new Vector2(0.5f, 2f);
 
