@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Corpse
+  - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -12,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Bullet
   - 
   - 
   - 
@@ -40,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Projectiles
+    uniqueID: 1200271607
     locked: 0
   m_RenderingLayers:
   - Default
