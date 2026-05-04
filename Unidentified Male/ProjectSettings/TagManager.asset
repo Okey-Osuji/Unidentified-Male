@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Corpse
-  - WeaponPickup
   - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -15,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Bullet
   - 
   - 
   - 

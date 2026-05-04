@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5802573456194497052}
   m_Layer: 0
   m_Name: KITCHEN KNIFE
-  m_TagString: WeaponPickup
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,5 +175,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.6399999, y: 20.47219}
+  m_Size: {x: 7, y: 23}
   m_EdgeRadius: 0

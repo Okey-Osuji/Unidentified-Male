@@ -197,6 +197,7 @@ MonoBehaviour:
   attackRate: 2
   bulletPrefab: {fileID: 3818995440132963660, guid: 2d504b57df6552048acbb40ea5203f33, type: 3}
   firePoint: {fileID: 1032824470387208233}
+  isPlayerInRange: 0
 --- !u!1 &6308008410480933701
 GameObject:
   m_ObjectHideFlags: 0

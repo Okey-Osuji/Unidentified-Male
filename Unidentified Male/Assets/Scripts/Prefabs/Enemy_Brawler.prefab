@@ -150,6 +150,7 @@ MonoBehaviour:
   attackRate: 1
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
+  isPlayerInRange: 0
 --- !u!61 &7064194876179304343
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -196,3 +196,4 @@ MonoBehaviour:
   attackRate: 1
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
+  isPlayerInRange: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7531208702564733758}
   m_Layer: 0
   m_Name: LEAD PIPE
-  m_TagString: WeaponPickup
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,5 +175,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.4299998, y: 21.042253}
+  m_Size: {x: 6, y: 21}
   m_EdgeRadius: 0

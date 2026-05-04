@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1069925448457761876}
   m_Layer: 0
   m_Name: ASSAULT RIFLE
-  m_TagString: WeaponPickup
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +55,7 @@ MonoBehaviour:
   durability: 250
   degradationRate: 5
   isDepleted: 0
+  bulletPrefab: {fileID: 3818995440132963660, guid: 2d504b57df6552048acbb40ea5203f33, type: 3}
 --- !u!212 &215324371030273783
 SpriteRenderer:
   serializedVersion: 2
@@ -171,5 +172,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6.66, y: 21.892344}
+  m_Size: {x: 10, y: 24}
   m_EdgeRadius: 0
