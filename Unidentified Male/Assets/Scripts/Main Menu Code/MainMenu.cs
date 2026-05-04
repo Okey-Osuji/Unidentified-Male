@@ -4,8 +4,15 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 
 {
+    public GameObject mainMenuPanel;//GameObject to store main menu UI
     public GameObject settingsPanel;//GameObject to store settings UI
+    public GameObject quitConfirmPanel;//Gameobject to store quitting confirmation UI
     
+    public void Start()
+    {
+        mainMenuPanel.SetActive(true);
+        quitConfirmPanel.SetActive(false);
+    }
     public void PlayGame()
     {
         //Boots/Loads up the next scene through Scene Manager for the game
@@ -18,9 +25,24 @@ public class MainMenu : MonoBehaviour
         settingsPanel.SetActive(true);
     }
 
+    public void ShowQuitConfirm()
+    {
+        //Sets quitConfirmation panel to visible
+        quitConfirmPanel.SetActive(true);
+        mainMenuPanel.SetActive(false);
+    }
+
+    public void CancelQuit()
+    {
+        //Sets quitConfirmation to invisible and returns to main menu
+        quitConfirmPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
+    }
+
     public void ExitGame()
     {
-        Debug.Log("Are you sure you want to QUIT?");//Debug message to log if player indeed wants to exit game
-        Application.Quit();//Exits the application/game entirely
+        //Exits Application
+        Debug.Log("Exiting Game...");
+        Application.Quit();
     }
 }
