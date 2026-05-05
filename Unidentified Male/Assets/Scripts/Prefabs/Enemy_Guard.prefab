@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3917050319242149349}
   - component: {fileID: 3050985924745314483}
   - component: {fileID: 8423556928035572233}
+  - component: {fileID: 8250167282634651588}
   m_Layer: 6
   m_Name: Enemy_Guard
   m_TagString: Enemy
@@ -30,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -254.61, y: -12.07, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,14 +83,14 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 55
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -4134124077646560333, guid: 7eecb6ec76182b94c8c546a1b6840641, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 16.65, y: 11.40122}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -155,17 +156,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -2.167389, y: -3.4042192}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 16.65, y: 11.40122}
+    newSize: {x: 16.65, y: 11.40122}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 14.249573, y: 5.751214}
   m_EdgeRadius: 0
 --- !u!114 &8423556928035572233
 MonoBehaviour:
@@ -187,6 +188,7 @@ MonoBehaviour:
   isDead: 0
   moveSpeed: 2
   detectionRange: 7
+  animator: {fileID: 8250167282634651588}
   weaponPickUpPrefab: {fileID: 1095809063748785567, guid: fc927824817202f46b0fd979af39005c, type: 3}
   weaponToDrop: {fileID: 0}
   dropChance: 1
@@ -196,4 +198,28 @@ MonoBehaviour:
   attackRate: 1
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
+  bulletSpawnOffset: 1
   isPlayerInRange: 0
+  DeathenemySpriteRenderer: {fileID: 6988414097462369210, guid: c494f2d56a2d4a3418ad80e1f14c1f31, type: 3}
+--- !u!95 &8250167282634651588
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380254990103071397}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97727e0b7cbb8f34e8f8912255f22ac9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

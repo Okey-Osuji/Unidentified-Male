@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2088271166978961330}
   - component: {fileID: 7260891123389757112}
   - component: {fileID: 499149716098088021}
+  - component: {fileID: -6845564955908611321}
   m_Layer: 6
   m_Name: Enemy_Soldier
   m_TagString: Enemy
@@ -29,9 +30,9 @@ Transform:
   m_GameObject: {fileID: 6245248029641546784}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 46.38, y: -3.11, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 46.207, y: -3.202, z: 0}
+  m_LocalScale: {x: 0.1767842, y: 0.1767842, z: 0.1767842}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1032824470387208233}
   m_Father: {fileID: 0}
@@ -83,14 +84,14 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 55
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1105331370195143596, guid: e98808fa0b6e7a543960f80a564ddb93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.66, y: 15.171624}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -156,17 +157,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.63304853, y: -2.8377614}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 9.66, y: 15.171624}
+    newSize: {x: 9.66, y: 15.171624}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 12.263707, y: 10.255469}
   m_EdgeRadius: 0
 --- !u!114 &499149716098088021
 MonoBehaviour:
@@ -188,6 +189,7 @@ MonoBehaviour:
   isDead: 0
   moveSpeed: 2
   detectionRange: 7
+  animator: {fileID: -6845564955908611321}
   weaponPickUpPrefab: {fileID: 4363959416334933295, guid: 4e1b0449572e5424facb2054ba0b66ca, type: 3}
   weaponToDrop: {fileID: 0}
   dropChance: 1
@@ -197,7 +199,31 @@ MonoBehaviour:
   attackRate: 2
   bulletPrefab: {fileID: 3818995440132963660, guid: 2d504b57df6552048acbb40ea5203f33, type: 3}
   firePoint: {fileID: 1032824470387208233}
+  bulletSpawnOffset: 1
   isPlayerInRange: 0
+  DeathenemySpriteRenderer: {fileID: 6988414097462369210, guid: c494f2d56a2d4a3418ad80e1f14c1f31, type: 3}
+--- !u!95 &-6845564955908611321
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245248029641546784}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b58d99a9e2fe06c448a4c4be681759ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6308008410480933701
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 6308008410480933701}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.82, y: -0.08, z: 0}
+  m_LocalPosition: {x: 2.58, y: 7.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

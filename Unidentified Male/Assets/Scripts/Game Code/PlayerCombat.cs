@@ -21,6 +21,7 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Visual Swapping")]
     public SpriteRenderer playerRenderer; // The "body" of the player
+    public Animator playerAnimator;// Movement animations can overwrite playerRenderer.sprite, so this is paused while weapon sprites are shown
     public Sprite unarmedSprite;
     public Sprite pistolSprite;
     public Sprite rifleSprite;
@@ -33,6 +34,8 @@ public class PlayerCombat : MonoBehaviour
     public Vector2 rifleOffset = new Vector2(-2.8f, 7.9f);
     public Vector2 pipeOffset = new Vector2(0.5f, 2f);
     public Vector2 knifeOffset = new Vector2(0.5f, 2f);
+
+    private bool isOverridingAnimatorSprite;
 
 
     // Method to handle weapon and hand attack inputs from the player(N key on keyboard)
@@ -347,10 +350,13 @@ public class PlayerCombat : MonoBehaviour
         // If no weapon is equipped or it's depleted, show unarmed player
         if (currentWeapon == null || currentWeapon.isDepleted)
         {
+            SetAnimatorSpriteOverride(false);
             SetPlayerSprite(unarmedSprite, "Unarmed");// Shows the player without a weapon when using fists
             attackPoint.localPosition = unarmedOffset;//Moves attackPoint to the unarmed attack position, which is the default attackPoint
             return;
         }
+
+        SetAnimatorSpriteOverride(true);
 
         // We check the weaponName string from the Weapon class to determine the sprite
         string name = currentWeapon.weaponName.ToLower();
@@ -399,6 +405,15 @@ public class PlayerCombat : MonoBehaviour
         }
 
         playerRenderer.sprite = newSprite;// Changes the main player sprite to match the equipped weapon
+    }
+
+    void SetAnimatorSpriteOverride(bool shouldOverride)
+    {
+        if (playerAnimator == null) playerAnimator = GetComponent<Animator>();
+        if (playerAnimator == null || isOverridingAnimatorSprite == shouldOverride) return;
+
+        isOverridingAnimatorSprite = shouldOverride;
+        playerAnimator.enabled = !shouldOverride;
     }
 
     SpriteRenderer FindPlayerRenderer()

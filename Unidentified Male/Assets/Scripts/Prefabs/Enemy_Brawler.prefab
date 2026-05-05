@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6550126469594269721}
   - component: {fileID: 6029561921148687110}
   - component: {fileID: 7064194876179304343}
+  - component: {fileID: 1177016612843718358}
   m_Layer: 6
   m_Name: Enemy_Brawler
   m_TagString: Enemy
@@ -30,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -254.6, y: -3.11, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.46, y: 0.46, z: 0.46}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 50
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -6791172504150793359, guid: 7647af8e4408fdd46bb39d97ad623159, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -141,6 +142,7 @@ MonoBehaviour:
   isDead: 0
   moveSpeed: 2
   detectionRange: 7
+  animator: {fileID: 1177016612843718358}
   weaponPickUpPrefab: {fileID: 0}
   weaponToDrop: {fileID: 0}
   dropChance: 1
@@ -150,7 +152,9 @@ MonoBehaviour:
   attackRate: 1
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
+  bulletSpawnOffset: 1
   isPlayerInRange: 0
+  DeathenemySpriteRenderer: {fileID: 6988414097462369210, guid: c494f2d56a2d4a3418ad80e1f14c1f31, type: 3}
 --- !u!61 &7064194876179304343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,15 +189,37 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.07326698, y: -1.3614442}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 8.19, y: 5.8406253}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 8.985502, y: 4.235719}
   m_EdgeRadius: 0
+--- !u!95 &1177016612843718358
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775620872723593049}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7757d8bb20646de44b471503d1694428, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
