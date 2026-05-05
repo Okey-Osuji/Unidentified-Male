@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     {
         mainMenuPanel.SetActive(true);
         quitConfirmPanel.SetActive(false);
+        settingsPanel.SetActive(false);
     }
     public void PlayGame()
     {
@@ -23,6 +24,8 @@ public class MainMenu : MonoBehaviour
     {
         //Boots/Loads the settings panel
         settingsPanel.SetActive(true);
+        mainMenuPanel.SetActive(false);
+        quitConfirmPanel.SetActive(false);
     }
 
     public void ShowQuitConfirm()
@@ -30,6 +33,7 @@ public class MainMenu : MonoBehaviour
         //Sets quitConfirmation panel to visible
         quitConfirmPanel.SetActive(true);
         mainMenuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
     }
 
     public void CancelQuit()
@@ -37,6 +41,7 @@ public class MainMenu : MonoBehaviour
         //Sets quitConfirmation to invisible and returns to main menu
         quitConfirmPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
+        settingsPanel.SetActive(false);
     }
 
     public void ExitGame()
