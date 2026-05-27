@@ -57,4 +57,6 @@ public class PlayerMovement : MonoBehaviour
         float speed = isSprinting ? sprintSpeed : walkSpeed;// Determine the current speed based on whether the player is sprinting
         rb.linearVelocity = moveInput * speed;// Set the Rigidbody2D's velocity based on the movement input and current speed
     }
+
+    
 }
