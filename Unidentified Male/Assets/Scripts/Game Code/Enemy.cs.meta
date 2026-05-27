@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 3638a943a2acf4645a7ab73a260a0aab
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - animator: {instanceID: 0}
+  - weaponPickUpPrefab: {instanceID: 0}
+  - weaponToDrop: {instanceID: 0}
+  - bulletPrefab: {instanceID: 0}
+  - firePoint: {instanceID: 0}
+  - DeathenemySpriteRenderer: {fileID: 6988414097462369210, guid: c494f2d56a2d4a3418ad80e1f14c1f31, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

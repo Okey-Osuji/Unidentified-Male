@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
     [Header("Combat Settings")]
     public bool hasFirearm = false;// Flag to indicate whether the enemy is equipped with a firearm, which can affect its attack behavior and range
     public float attackDamage = 10f;// The base attack damage of the enemy, which can be modified by the enemy's type, equipment, and other factors to determine how much damage it deals to the player
-    public float attackRange = 5.0f;// The range of the enemy attack in reference to player position
+    public float attackRange = 7f;// The range of the enemy attack in reference to player position
     public float attackRate = 1f;// The rate in seconds in which the enemy attacks
     private float nextAttackTime = 0f;// The time it takes to initiate the next attack
     public GameObject bulletPrefab;// Assign the new bullet here
@@ -116,11 +116,13 @@ public class Enemy : MonoBehaviour
                 nextAttackTime = Time.time + attackRate;
                 animator.SetBool("Attack", true);
             }
+            
         }
         else if (distance < detectionRange)
         {
             Vector2 direction = (player.position - transform.position).normalized;
             GetComponent<Rigidbody2D>().linearVelocity = direction * moveSpeed;
+            animator.SetBool("Attack", false);
         }
     }
 
@@ -168,7 +170,6 @@ public class Enemy : MonoBehaviour
             }
         }
         
-
 
         GetComponent<SpriteRenderer>().color = Color.gray;// Changes the color of the enemy's sprite to gray to visually indicate that the enemy is dead, which can help players easily identify defeated enemies in the game world
         transform.rotation = Quaternion.Euler(0, 0, 90);// Rotates the object to a fixed orientation of 90 degrees around the Z-axis(Tells player the state of the enemy, since it's 90 degrees, it lies down on the floor axis and looks like a corpse)
