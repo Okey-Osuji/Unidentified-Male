@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   weaponName: Lead Pipe
   isFirearm: 0
+  animationType: 3
   damageValue: 25
   attackRate: 0.5
   range: 1.2

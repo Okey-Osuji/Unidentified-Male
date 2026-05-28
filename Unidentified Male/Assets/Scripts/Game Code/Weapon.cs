@@ -2,10 +2,20 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public enum WeaponAnimationType
+    {
+        Auto = -1,
+        Unarmed = 0,
+        Pistol = 1,
+        Rifle = 2,
+        Pipe = 3,
+        Knife = 4
+    }
 
     [Header("Identity")]
     public string weaponName;// The name of the weapon, which can be used to identify the weapon in the game and provide information to the player about its attributes and capabilities
     public bool isFirearm;// Flag to indicate whether the weapon is a firearm, which can affect its attack behavior and range compared to melee weapons
+    public WeaponAnimationType animationType = WeaponAnimationType.Auto;// Used by PlayerCombat to choose the matching equipped animation set
 
 
     [Header("Base Stats")]

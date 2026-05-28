@@ -8492,7 +8492,11 @@ PrefabInstance:
     - target: {fileID: 499149716098088021, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: weaponToDrop
       value: 
-      objectReference: {fileID: 4363959416334933295, guid: 4e1b0449572e5424facb2054ba0b66ca, type: 3}
+      objectReference: {fileID: 7495706084016840171, guid: 75a5e079eb6645c4eaa627eed8f95533, type: 3}
+    - target: {fileID: 499149716098088021, guid: ad14e34125008384b999618cf60110b2, type: 3}
+      propertyPath: weaponPickUpPrefab
+      value: 
+      objectReference: {fileID: 7495706084016840171, guid: 75a5e079eb6645c4eaa627eed8f95533, type: 3}
     - target: {fileID: 2096346359742728936, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.5
@@ -25557,6 +25561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   weaponName: Kitchen Knife
   isFirearm: 0
+  animationType: -1
   damageValue: 0
   attackRate: 0.5
   range: 1.2
@@ -450066,6 +450071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirearmWeapon
   weaponName: Assault Rifle
   isFirearm: 1
+  animationType: -1
   damageValue: 0
   attackRate: 0.5
   range: 1.2
@@ -454111,6 +454117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirearmWeapon
   weaponName: Service Pistol
   isFirearm: 1
+  animationType: -1
   damageValue: 0
   attackRate: 0.5
   range: 1.2
@@ -468221,7 +468228,11 @@ PrefabInstance:
     - target: {fileID: 499149716098088021, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: weaponToDrop
       value: 
-      objectReference: {fileID: 4363959416334933295, guid: 4e1b0449572e5424facb2054ba0b66ca, type: 3}
+      objectReference: {fileID: 7495706084016840171, guid: 75a5e079eb6645c4eaa627eed8f95533, type: 3}
+    - target: {fileID: 499149716098088021, guid: ad14e34125008384b999618cf60110b2, type: 3}
+      propertyPath: weaponPickUpPrefab
+      value: 
+      objectReference: {fileID: 7495706084016840171, guid: 75a5e079eb6645c4eaa627eed8f95533, type: 3}
     - target: {fileID: 2096346359742728936, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.8
@@ -609443,6 +609454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   weaponName: Lead Pipe
   isFirearm: 0
+  animationType: -1
   damageValue: 0
   attackRate: 0.5
   range: 1.2
@@ -621410,7 +621422,11 @@ PrefabInstance:
     - target: {fileID: 499149716098088021, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: weaponToDrop
       value: 
-      objectReference: {fileID: 4363959416334933295, guid: 4e1b0449572e5424facb2054ba0b66ca, type: 3}
+      objectReference: {fileID: 7495706084016840171, guid: 75a5e079eb6645c4eaa627eed8f95533, type: 3}
+    - target: {fileID: 499149716098088021, guid: ad14e34125008384b999618cf60110b2, type: 3}
+      propertyPath: weaponPickUpPrefab
+      value: 
+      objectReference: {fileID: 7495706084016840171, guid: 75a5e079eb6645c4eaa627eed8f95533, type: 3}
     - target: {fileID: 2096346359742728936, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.7
@@ -648868,12 +648884,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 55
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 499778363697903948, guid: 8bdc03b815962ca4181b08c02cc3b5c5, type: 3}
+  m_Sprite: {fileID: 6783553615131952372, guid: de59baf970d330b4b9a2877f93375064, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 14.029999, y: 11.851269}
+  m_Size: {x: 10.12, y: 9.190984}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -648948,8 +648964,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.19, y: 6.120655}
-    newSize: {x: 14.029999, y: 11.851269}
+    oldSize: {x: 10.12, y: 9.190984}
+    newSize: {x: 10.12, y: 9.190984}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -649144,6 +649160,16 @@ MonoBehaviour:
   rifleSprite: {fileID: 21300000, guid: c3797414787bb0d44b6af0d357aefa1a, type: 3}
   pipeSprite: {fileID: 1532869087303679589, guid: 51e0a9f58fcccbe4d9d1b7886c6ac1c6, type: 3}
   knifeSprite: {fileID: 2321281515991828854, guid: a3b42c06431601b47b38900e483a765f, type: 3}
+  driveAnimatorWeaponStates: 1
+  weaponTypeParameter: WeaponType
+  movingParameter: IsMoving
+  attackTriggerParameter: Attack
+  idleVisualRestoreDelay: 0.05
+  unarmedWalkClip: {fileID: 7400000, guid: 5370533d3c95f3b4f8e7f22c5dfba5c9, type: 2}
+  pistolWalkClip: {fileID: 7400000, guid: 7a4714fb044490a4197cb2b110de53c1, type: 2}
+  rifleWalkClip: {fileID: 7400000, guid: 92c494289fd47e646ba762de0abac650, type: 2}
+  pipeWalkClip: {fileID: 7400000, guid: 52591b12eb5dd0c43a7d792b6031e0c4, type: 2}
+  knifeWalkClip: {fileID: 7400000, guid: 9597c28214012fb45abb4682c2f5ef84, type: 2}
   unarmedOffset: {x: 0.5, y: 2}
   pistolOffset: {x: -0.3, y: 5.8}
   rifleOffset: {x: -2.8, y: 7.9}
@@ -656085,11 +656111,11 @@ PrefabInstance:
     - target: {fileID: 499149716098088021, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: weaponToDrop
       value: 
-      objectReference: {fileID: 4363959416334933295, guid: 4e1b0449572e5424facb2054ba0b66ca, type: 3}
+      objectReference: {fileID: 7495706084016840171, guid: 75a5e079eb6645c4eaa627eed8f95533, type: 3}
     - target: {fileID: 499149716098088021, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: weaponPickUpPrefab
       value: 
-      objectReference: {fileID: 4363959416334933295, guid: 4e1b0449572e5424facb2054ba0b66ca, type: 3}
+      objectReference: {fileID: 7495706084016840171, guid: 75a5e079eb6645c4eaa627eed8f95533, type: 3}
     - target: {fileID: 2096346359742728936, guid: ad14e34125008384b999618cf60110b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29

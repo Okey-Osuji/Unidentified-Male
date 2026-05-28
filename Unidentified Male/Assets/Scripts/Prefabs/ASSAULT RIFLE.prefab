@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirearmWeapon
   weaponName: Assault Rifle
   isFirearm: 1
+  animationType: 2
   damageValue: 60
   attackRate: 0.5
   range: 15

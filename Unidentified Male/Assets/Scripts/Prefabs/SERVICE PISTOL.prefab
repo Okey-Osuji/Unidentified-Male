@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirearmWeapon
   weaponName: Service Pistol
   isFirearm: 1
+  animationType: 1
   damageValue: 40
   attackRate: 0.5
   range: 10

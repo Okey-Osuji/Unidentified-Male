@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   weaponName: Kitchen Knife
   isFirearm: 0
+  animationType: 4
   damageValue: 15
   attackRate: 0.5
   range: 0.8

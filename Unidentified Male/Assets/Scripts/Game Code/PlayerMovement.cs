@@ -13,16 +13,25 @@ public class PlayerMovement : MonoBehaviour
     private Keyboard keyboard;// Reference to the keyboard input device
     public Animator animator;// Reference to the Animator component, which can be used to control the player's animations based on movement and actions
     public bool isMoving = false;// Initializes the "IsMoving" parameter in the Animator to false, which can be used to control the player's movement animations based on whether they are currently moving or not
+    private PlayerCombat combat;// Keeps combat visuals synced with whether the player is walking or idle
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();// Get the Rigidbody2D component for movement
         keyboard = Keyboard.current;// Get the current keyboard device
         animator = GetComponent<Animator>();// Get the Animator component
+        combat = GetComponent<PlayerCombat>();
     }
     
     void Update()
 {
-    if (keyboard == null) return;
+    if (keyboard == null)
+    {
+        moveInput = Vector2.zero;
+        isSprinting = false;
+        SetMovingState(false);
+        return;
+    }
     
     // Reads movement input
     moveInput.x = (keyboard.dKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed ? 1 : 0);
@@ -42,11 +51,11 @@ public class PlayerMovement : MonoBehaviour
         // Since soldier is drawn facing UP, we subtract 90 degrees 
         // to align Unity's "Right" (0°) with the player sprite's "Top".
         transform.rotation = Quaternion.Euler(0, 0, targetAngle - 90f);
-        animator.SetBool("IsMoving", true); // Set the "IsMoving" parameter in the Animator to true when there is movement input
+        SetMovingState(true);
     }
     else
     {
-        animator.SetBool("IsMoving", false); // Set the "IsMoving" parameter in the Animator to false when there is no movement input
+        SetMovingState(false);
     }
 }
     
@@ -58,5 +67,19 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = moveInput * speed;// Set the Rigidbody2D's velocity based on the movement input and current speed
     }
 
+    void SetMovingState(bool moving)
+    {
+        isMoving = moving;
+
+        if (animator != null)
+        {
+            animator.SetBool("IsMoving", moving); // Set the "IsMoving" parameter in the Animator based on whether there is movement input
+        }
+
+        if (combat != null)
+        {
+            combat.SetPlayerMoving(moving);
+        }
+    }
     
 }

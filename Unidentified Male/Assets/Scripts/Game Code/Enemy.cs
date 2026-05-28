@@ -36,11 +36,20 @@ public class Enemy : MonoBehaviour
     public Transform firePoint;// A child object at the tip of the gun
     public float bulletSpawnOffset = 1f;// Distance in front of the enemy where bullets spawn so each enemy does not need a perfect firePoint
     public bool isPlayerInRange = false;
+
     public Sprite DeathenemySpriteRenderer;// Reference to the SpriteRenderer component of the enemy, which can be used to change the enemy's appearance when it dies, such as changing its color or sprite to indicate that it is a corpse ready for consumption
+
+    private Rigidbody2D rb;
+    private Collider2D enemyCollider;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        enemyCollider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         currentHealth = maxHealth;// Initializes the current health of the enemy to its maximum health at the start of the game
         // Automatically finds the player GameObject
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -52,7 +61,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Enemy cannot find Player! Is the Triangle tagges 'Player'?");
         }
-        animator.SetBool("Attack", false);// Initializes the "Attack" parameter in the Animator to false, which can be used to control the enemy's attack animations based on its state and actions
+        if (animator != null) animator.SetBool("Attack", false);// Initializes the "Attack" parameter in the Animator to false, which can be used to control the enemy's attack animations based on its state and actions
 
 
     }
@@ -74,9 +83,9 @@ public class Enemy : MonoBehaviour
         // If the enemy is dead, only listen for Consumption (E)
         if (isDead)
         {   
-            GetComponent<SpriteRenderer>().sprite = DeathenemySpriteRenderer;// Changes the sprite of the enemy to a designated "death" sprite to visually indicate that the enemy is dead, which can help players easily identify defeated enemies in the game world
+            if (spriteRenderer != null) spriteRenderer.sprite = DeathenemySpriteRenderer;// Changes the sprite of the enemy to a designated "death" sprite to visually indicate that the enemy is dead, which can help players easily identify defeated enemies in the game world
             // Stop all movement completely
-            GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            if (rb != null) rb.linearVelocity = Vector2.zero;
 
             // Checks for consumption
             if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
@@ -109,20 +118,20 @@ public class Enemy : MonoBehaviour
 
         if (distance <= currentEffectiveRange)
         {
-            GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            if (rb != null) rb.linearVelocity = Vector2.zero;
             if (Time.time >= nextAttackTime)
             {
                 AttackPlayer();
                 nextAttackTime = Time.time + attackRate;
-                animator.SetBool("Attack", true);
+                if (animator != null) animator.SetBool("Attack", true);
             }
             
         }
         else if (distance < detectionRange)
         {
             Vector2 direction = (player.position - transform.position).normalized;
-            GetComponent<Rigidbody2D>().linearVelocity = direction * moveSpeed;
-            animator.SetBool("Attack", false);
+            if (rb != null) rb.linearVelocity = direction * moveSpeed;
+            if (animator != null) animator.SetBool("Attack", false);
         }
     }
 
@@ -150,6 +159,19 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
         isDead = true;
         gameObject.tag = "Corpse";
+        nextAttackTime = Mathf.Infinity;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
+        if (animator != null)
+        {
+            animator.SetBool("Attack", false);
+            animator.enabled = false;
+        }
 
         // Logic to spawn defeated enemy's weapon
         if (weaponToDrop != null)
@@ -171,13 +193,13 @@ public class Enemy : MonoBehaviour
         }
         
 
-        GetComponent<SpriteRenderer>().color = Color.gray;// Changes the color of the enemy's sprite to gray to visually indicate that the enemy is dead, which can help players easily identify defeated enemies in the game world
+        if (spriteRenderer != null) spriteRenderer.color = Color.gray;// Changes the color of the enemy's sprite to gray to visually indicate that the enemy is dead, which can help players easily identify defeated enemies in the game world
         transform.rotation = Quaternion.Euler(0, 0, 90);// Rotates the object to a fixed orientation of 90 degrees around the Z-axis(Tells player the state of the enemy, since it's 90 degrees, it lies down on the floor axis and looks like a corpse)
 
 
 
         // Turns over the solid collision so the player can walk over the corpse
-        GetComponent<Collider2D>().isTrigger = true;
+        if (enemyCollider != null) enemyCollider.isTrigger = true;
 
 
         Debug.Log(enemyName + " Is ready to be Consumed (E) !");// Logs a message to indicate that the enemy is ready to be consumed by the player, which can be used to prompt the player to interact with the defeated enemy for benefits such as health restoration or weapons
