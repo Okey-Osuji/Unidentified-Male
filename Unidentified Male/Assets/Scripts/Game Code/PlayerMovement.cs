@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,13 +15,16 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;// Reference to the Animator component, which can be used to control the player's animations based on movement and actions
     public bool isMoving = false;// Initializes the "IsMoving" parameter in the Animator to false, which can be used to control the player's movement animations based on whether they are currently moving or not
     private PlayerCombat combat;// Keeps combat visuals synced with whether the player is walking or idle
-
+    [SerializeField] private AudioClip walkSound;// Sound effect for walking
+    private AudioSource audioSource;// Reference to the AudioSource component for playing sound effects
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();// Get the Rigidbody2D component for movement
         keyboard = Keyboard.current;// Get the current keyboard device
         animator = GetComponent<Animator>();// Get the Animator component
         combat = GetComponent<PlayerCombat>();
+        audioSource = GetComponent<AudioSource>();
     }
     
     void Update()
@@ -52,10 +56,20 @@ public class PlayerMovement : MonoBehaviour
         // to align Unity's "Right" (0°) with the player sprite's "Top".
         transform.rotation = Quaternion.Euler(0, 0, targetAngle - 90f);
         SetMovingState(true);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = walkSound;
+            audioSource.Play();
+        }
+
     }
     else
     {
         SetMovingState(false);
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
     }
 }
     
@@ -81,5 +95,7 @@ public class PlayerMovement : MonoBehaviour
             combat.SetPlayerMoving(moving);
         }
     }
+  
     
 }
+
