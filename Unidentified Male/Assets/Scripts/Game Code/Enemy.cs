@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -42,13 +43,17 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D enemyCollider;
     private SpriteRenderer spriteRenderer;
-
+    private AudioSource audioSource;// Reference to the AudioSource component for playing sound effects
+    [SerializeField] private AudioClip hitSound; // Sound effect for enemy hit
+    [SerializeField] private AudioClip deathSound; // Sound effect for enemy death
+    [SerializeField] private AudioClip shootSound; // Sound effect for enemy attack
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;// Initializes the current health of the enemy to its maximum health at the start of the game
         // Automatically finds the player GameObject
@@ -74,8 +79,17 @@ public class Enemy : MonoBehaviour
         float finalDamage = damage * (1f - armorRating);// Calculate the final damage after applying armor reduction, which reduces the incoming damage based on the enemy's armor rating to provide a more realistic damage system
         currentHealth -= finalDamage;// Reduces the current health of the enemy by the calculated final damage after applying armor reduction
 
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);// Plays the hit sound effect when the enemy takes damage
+        }
+
         Debug.Log($"{enemyName} (Tier {enemyType}) took {finalDamage} damage! Remaining health: {currentHealth}");// Log a message to indicate that the enemy has taken damage, including the enemy's name, type, the amount of damage taken, and the remaining health
         if (currentHealth <= 0) Die();// Checks if the enemy's health has dropped to zero or below, and if so, call the Die method to handle the enemy's death
+        if (currentHealth <= 0)
+        {
+            audioSource.PlayOneShot(deathSound);// Plays the death sound effect when the enemy dies
+        }
     }
 
     void Update()
@@ -228,7 +242,7 @@ public class Enemy : MonoBehaviour
             // RANGED ATTACK (Soldier)
             // Spawns the bullet in front of the enemy using transform.up because the enemy now faces the player
             Vector3 spawnPosition = transform.position + transform.up * bulletSpawnOffset;
-
+            audioSource.PlayOneShot(shootSound); // Plays the shooting sound effect when the enemy attacks with a firearm
             // Calculates the direction from the spawn point to the player so the bullet does not shoot from the wrong angle
             Vector2 direction = (player.position - spawnPosition).normalized;
 

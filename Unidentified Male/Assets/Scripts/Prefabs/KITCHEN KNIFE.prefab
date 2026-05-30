@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
   weaponPrefab: {fileID: 2146168331909388360}
+  pickupSound: {fileID: 8300000, guid: 3e71b9b78966d674d9feb5fda1752f69, type: 3}
 --- !u!61 &5802573456194497052
 BoxCollider2D:
   m_ObjectHideFlags: 0

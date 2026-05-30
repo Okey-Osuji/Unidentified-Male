@@ -10,6 +10,8 @@ MonoImporter:
   - bulletPrefab: {instanceID: 0}
   - firePoint: {instanceID: 0}
   - DeathenemySpriteRenderer: {fileID: 6988414097462369210, guid: c494f2d56a2d4a3418ad80e1f14c1f31, type: 3}
+  - hitSound: {fileID: 8300000, guid: f4470f9db5d38a7478880ad0703d93d1, type: 3}
+  - deathSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

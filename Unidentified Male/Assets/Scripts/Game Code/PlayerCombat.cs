@@ -28,7 +28,10 @@ public class PlayerCombat : MonoBehaviour
     public Sprite rifleSprite;// The idle sprite shown when the player has a rifle equipped
     public Sprite pipeSprite;// The idle sprite shown when the player has a pipe equipped
     public Sprite knifeSprite;// The idle sprite shown when the player has a knife equipped
-
+    [SerializeField] private AudioSource audioSource;// Reference to the AudioSource component for playing sound effects
+    [SerializeField] private AudioClip pickupSound; // Sound effect for picking up a weapon
+    [SerializeField] private AudioClip attackSound; // Sound effect for switching weapons
+    [SerializeField] private AudioClip hitSound; // Sound effect for switching weapons
     [Header("Animation Parameters")]
     public bool driveAnimatorWeaponStates = true;// Allows the script to control the player's Animator weapon states when this is turned on
     public string weaponTypeParameter = "WeaponType";// The Animator integer parameter used to tell animations which weapon is equipped
@@ -62,6 +65,11 @@ public class PlayerCombat : MonoBehaviour
     void OnAttack(InputValue value)
     {
         if (!value.isPressed) return;// Checks if the attack input is currently being pressed, and if so, returns early to prevent multiple attacks from being triggered while the button is held down
+
+        if (audioSource != null && attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);// Plays the attack sound effect when performing an attack
+        }
 
         TriggerAttackAnimation();// Plays the attack animation trigger before running the weapon's damage logic
 
@@ -112,6 +120,8 @@ public class PlayerCombat : MonoBehaviour
                 // Checks if weapon exists before logging name
                 string attackerName = (currentWeapon != null) ? currentWeapon.weaponName : "Fists";// Chooses the equipped weapon name, or "Fists" if the player is unarmed
                 Debug.Log($"Hit {enemy.name} with {attackerName} for {damage} damage!");// Logs a message to indicate that an enemy has been hit and the amount of damage dealt
+                   
+                
             }
         }
     }
@@ -150,7 +160,7 @@ public class PlayerCombat : MonoBehaviour
 
         // Adds to our 'Q' list of weapons
         unlockedWeapons.Add(newWep);// Adds the new weapon object to the player's inventory list
-
+        audioSource.PlayOneShot(pickupSound);// Plays the pickup sound effect when a new weapon is added to the inventory
         Debug.Log($"Added {newWep.name} to inventory. Current count: {unlockedWeapons.Count}/{maxInventory}");// Logs the updated inventory count after the pickup
 
         // Picking up stores the weapon, but the player keeps holding whatever is currently equipped.
@@ -361,7 +371,9 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             CycleWeapon();// Switches to the next inventory weapon or fists when Q is pressed
+            audioSource.PlayOneShot(pickupSound);// Plays the weapon switch sound effect when cycling weapons
         }
+
 
     }
 

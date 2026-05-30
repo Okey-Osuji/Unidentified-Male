@@ -8,9 +8,12 @@ public class WeaponPickup : MonoBehaviour
 
     private bool isPlayerInRange = false;
     private GameObject playerObject;
+    [SerializeField] private AudioClip pickupSound; // Sound effect for picking up the weapon
+    private AudioSource audioSource; // Reference to the AudioSource component for playing sound effects
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         if (weaponPrefab != null)
         {
             Weapon wScript = weaponPrefab.GetComponent<Weapon>();
@@ -50,6 +53,10 @@ public class WeaponPickup : MonoBehaviour
                 // If the pickup or swap worked, remove this floor item from the scene
                 Debug.Log("Successfully picked up " + actualWeaponName);
                 Destroy(gameObject);
+                if (audioSource != null && pickupSound != null)
+                {
+                    audioSource.PlayOneShot(pickupSound);
+                }
             }
             else
             {
