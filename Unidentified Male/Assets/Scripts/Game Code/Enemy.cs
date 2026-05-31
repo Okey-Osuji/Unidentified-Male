@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
     {
         // If the enemy is dead, only listen for Consumption (E)
         if (isDead)
-        {   
+        {
             if (spriteRenderer != null) spriteRenderer.sprite = DeathenemySpriteRenderer;// Changes the sprite of the enemy to a designated "death" sprite to visually indicate that the enemy is dead, which can help players easily identify defeated enemies in the game world
             // Stop all movement completely
             if (rb != null) rb.linearVelocity = Vector2.zero;
@@ -139,7 +139,7 @@ public class Enemy : MonoBehaviour
                 nextAttackTime = Time.time + attackRate;
                 if (animator != null) animator.SetBool("Attack", true);
             }
-            
+
         }
         else if (distance < detectionRange)
         {
@@ -161,7 +161,7 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, targetAngle - 90f);
     }
 
-    
+
     private void ConsumeCorpse()
     {
         Debug.Log("Corpse consumed! Health restored, morale chipping away...");
@@ -205,7 +205,7 @@ public class Enemy : MonoBehaviour
                 Debug.Log("SUCCESS: Item instantiated at " + dropPosition);
             }
         }
-        
+
 
         if (spriteRenderer != null) spriteRenderer.color = Color.gray;// Changes the color of the enemy's sprite to gray to visually indicate that the enemy is dead, which can help players easily identify defeated enemies in the game world
         transform.rotation = Quaternion.Euler(0, 0, 90);// Rotates the object to a fixed orientation of 90 degrees around the Z-axis(Tells player the state of the enemy, since it's 90 degrees, it lies down on the floor axis and looks like a corpse)
@@ -217,6 +217,12 @@ public class Enemy : MonoBehaviour
 
 
         Debug.Log(enemyName + " Is ready to be Consumed (E) !");// Logs a message to indicate that the enemy is ready to be consumed by the player, which can be used to prompt the player to interact with the defeated enemy for benefits such as health restoration or weapons
+
+        // Tells the LevelManager that an enemy has been cleared
+        if (LevelExit.Instance != null)
+        {
+            LevelExit.Instance.EnemyDefeated();
+        }
 
     }
 

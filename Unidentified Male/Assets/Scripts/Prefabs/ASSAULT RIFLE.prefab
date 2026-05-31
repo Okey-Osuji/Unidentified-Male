@@ -51,6 +51,7 @@ MonoBehaviour:
   weaponName: Assault Rifle
   isFirearm: 1
   animationType: 2
+  weaponIcon: {fileID: 8333481726314500824, guid: 5eec13c45dbb5d34b941134fc8424278, type: 3}
   damageValue: 60
   attackRate: 0.5
   range: 15

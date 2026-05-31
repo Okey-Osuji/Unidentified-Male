@@ -54,6 +54,7 @@ MonoBehaviour:
   weaponName: Kitchen Knife
   isFirearm: 0
   animationType: 4
+  weaponIcon: {fileID: -8043225553811881211, guid: c8692b619702f0f489de9878f0cef151, type: 3}
   damageValue: 15
   attackRate: 0.5
   range: 0.8

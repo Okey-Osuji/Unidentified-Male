@@ -120,8 +120,8 @@ public class PlayerCombat : MonoBehaviour
                 // Checks if weapon exists before logging name
                 string attackerName = (currentWeapon != null) ? currentWeapon.weaponName : "Fists";// Chooses the equipped weapon name, or "Fists" if the player is unarmed
                 Debug.Log($"Hit {enemy.name} with {attackerName} for {damage} damage!");// Logs a message to indicate that an enemy has been hit and the amount of damage dealt
-                   
-                
+
+
             }
         }
     }
@@ -231,6 +231,9 @@ public class PlayerCombat : MonoBehaviour
 
         UpdatePlayerAppearance();// Refreshes the player's idle sprite, animation weapon type, and attackPoint offset after the swap
         Debug.Log($"Swapped {oldWeaponName} for {currentWeapon.weaponName}.");// Logs which weapon was replaced
+        
+
+        UpdateHUDVisuals();
         return true;// Tells the pickup object that the swap succeeded
     }
 
@@ -316,6 +319,8 @@ public class PlayerCombat : MonoBehaviour
             RefreshMovementState();// Checks whether the player is moving before deciding between idle sprite and walk animation
             UpdatePlayerAppearance();// Updates the main player sprite after switching to this weapon
             Debug.Log($"Switched to: {currentWeapon.weaponName}");// Logs the weapon that is now equipped
+
+            UpdateHUDVisuals();
         }
         else
         {
@@ -332,6 +337,8 @@ public class PlayerCombat : MonoBehaviour
             {
                 currentWeapon = null;// Clears the current weapon when no inventory weapons remain
                 UpdatePlayerAppearance();// Refreshes visuals back to the unarmed state
+
+                UpdateHUDVisuals();
             }
         }
     }
@@ -345,6 +352,8 @@ public class PlayerCombat : MonoBehaviour
         RefreshMovementState();// Checks whether the player is currently moving before updating visuals
         UpdatePlayerAppearance();// Refreshes the player sprite and attackPoint to the unarmed setup
         Debug.Log("Switched to: Fists");// Logs that the player is now unarmed
+
+        UpdateHUDVisuals();
     }
 
     void Start()
@@ -363,6 +372,8 @@ public class PlayerCombat : MonoBehaviour
         if (playerRenderer == null) playerRenderer = FindPlayerRenderer();// Finds the player body sprite if it was not assigned in the Inspector
         InitializeWalkOverrideController();// Sets up the runtime walk animation override controller before visuals are updated
         UpdatePlayerAppearance();// Applies the correct starting sprite, weapon animation, and attackPoint offset
+
+        UpdateHUDVisuals();
     }
 
     void Update()
@@ -646,6 +657,14 @@ public class PlayerCombat : MonoBehaviour
         }
 
         return null;// Returns null if no valid player SpriteRenderer could be found
+    }
+
+    private void UpdateHUDVisuals()
+    {
+        if (DynamicWeaponHUD.Instance != null)
+        {
+            DynamicWeaponHUD.Instance.RefreshHUD(unlockedWeapons, currentWeapon);
+        }
     }
 
 }

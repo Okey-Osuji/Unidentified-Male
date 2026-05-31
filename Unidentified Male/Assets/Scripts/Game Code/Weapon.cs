@@ -16,7 +16,7 @@ public abstract class Weapon : MonoBehaviour
     public string weaponName;// The name of the weapon, which can be used to identify the weapon in the game and provide information to the player about its attributes and capabilities
     public bool isFirearm;// Flag to indicate whether the weapon is a firearm, which can affect its attack behavior and range compared to melee weapons
     public WeaponAnimationType animationType = WeaponAnimationType.Auto;// Used by PlayerCombat to choose the matching equipped animation set
-
+    public Sprite weaponIcon;// Used to store the sprite image of the weapons
 
     [Header("Base Stats")]
     public float damageValue;// The damage value of the weapon, which determines how much damage it deals to enemies when used in combat

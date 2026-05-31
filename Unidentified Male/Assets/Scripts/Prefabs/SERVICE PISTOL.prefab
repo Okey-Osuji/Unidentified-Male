@@ -51,6 +51,7 @@ MonoBehaviour:
   weaponName: Service Pistol
   isFirearm: 1
   animationType: 1
+  weaponIcon: {fileID: 6038031328562526084, guid: 2ef6a181e971c9d45866715e9945e6dc, type: 3}
   damageValue: 40
   attackRate: 0.5
   range: 10

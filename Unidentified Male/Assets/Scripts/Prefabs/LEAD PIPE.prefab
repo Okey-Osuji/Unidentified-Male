@@ -54,6 +54,7 @@ MonoBehaviour:
   weaponName: Lead Pipe
   isFirearm: 0
   animationType: 3
+  weaponIcon: {fileID: -3149693130552056393, guid: 99152c6892106084bbd8041dc8c3a495, type: 3}
   damageValue: 25
   attackRate: 0.5
   range: 1.2
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
   weaponPrefab: {fileID: 1095809063748785567}
+  pickupSound: {fileID: 0}
 --- !u!61 &7531208702564733758
 BoxCollider2D:
   m_ObjectHideFlags: 0
